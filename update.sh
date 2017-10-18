@@ -3,7 +3,7 @@
 # A POSIX variable
 OPTIND=1 # Reset in case getopts has been used previously in the shell.
 
-while getopts "a:v:q:u:d:s:i:o:" opt; do
+while getopts "a:v:q:u:d:s:i:o:n:" opt; do
     case "$opt" in
     a)  ARCH=$OPTARG
         ;;
@@ -20,6 +20,8 @@ while getopts "a:v:q:u:d:s:i:o:" opt; do
     i)  INCLUDE=$OPTARG
         ;;
     o)  UNAME_ARCH=$OPTARG
+        ;;
+    n)  NDK_VERSION=$OPTARG
         ;;
     esac
 done
@@ -61,6 +63,8 @@ sudo chown -R "$(id -u):$(id -g)" "$dir"
 xz -d < $dir/rootfs.tar.xz | gzip -c > $dir/rootfs.tar.gz
 sed -i /^ENV/d "${dir}/Dockerfile"
 echo "ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO}" >> "${dir}/Dockerfile"
+echo "RUN wget https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip && unzip android-ndk-${NDK_VERSION}-linux-x86_64.zip -d /opt && rm android-ndk-${NDK_VERSION}-linux-x86_64.zip" >> "${dir}/Dockerfile"
+echo "RUN echo ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} >> /etc/environment" >> "${dir}/Dockerfile"
 
 if [ "$DOCKER_REPO" ]; then
     docker build -t "${DOCKER_REPO}:${ARCH}-${SUITE}-slim" "${dir}"

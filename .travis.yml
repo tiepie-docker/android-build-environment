@@ -5,6 +5,7 @@ env:
     global:
         - QEMU_VER=v2.9.1
         - DOCKER_REPO=tiepie/android-build-environment
+        - NDK_VERSION=r15c
     matrix:
         - ARCH=amd64 INCLUDE=iproute2,wget QEMU_ARCH=x86_64 SUITE=xenial UNAME_ARCH=x86_64 VERSION=16.04
 
@@ -13,6 +14,6 @@ before_script:
     - sudo apt-get update -qq
     - sudo apt-get -yt zesty-updates install qemu-user-static debootstrap
 script:
-    - sudo ./update.sh -a "$ARCH" -v "$VERSION" -q "$QEMU_ARCH" -u "$QEMU_VER" -d "$DOCKER_REPO" -s "$SUITE" -i "$INCLUDE" -o "$UNAME_ARCH"
+    - sudo ./update.sh -a "$ARCH" -v "$VERSION" -q "$QEMU_ARCH" -u "$QEMU_VER" -d "$DOCKER_REPO" -s "$SUITE" -i "$INCLUDE" -o "$UNAME_ARCH" -n "$NDK_VERSION"
 after_success:
     - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push $DOCKER_REPO:$ARCH-$SUITE; fi
