@@ -73,6 +73,14 @@ RUN apt-get update && \
     apt-get install -y openjdk-8-jdk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
+    mkdir -p /opt/android-sdk && \
+    unzip -q sdk-tools-linux-3859397.zip -d /opt/android-sdk && \
+    rm sdk-tools-linux-3859397.zip && \
+    cd /opt/android-sdk/tools/bin && \
+    yes | ./sdkmanager --licenses && \
+    ./sdkmanager "tools" "platform-tools" "platforms;android-23" "build-tools;23.0.3"
 EOF
 
 if [ "$DOCKER_REPO" ]; then
