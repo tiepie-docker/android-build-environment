@@ -5,7 +5,7 @@ env:
     global:
         - QEMU_VER=v2.9.1
         - DOCKER_REPO=tiepie/android-build-environment
-        - NDK_VERSION=r15c
+        - NDK_VERSION=r16-beta2
     matrix:
         - ARCH=amd64 INCLUDE=iproute2,wget,unzip,ca-certificates QEMU_ARCH=x86_64 SUITE=xenial UNAME_ARCH=x86_64 VERSION=16.04
 
