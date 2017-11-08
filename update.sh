@@ -84,7 +84,7 @@ RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zi
 
 RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \
     chmod +x extract-qt-installer.sh && \
-    wget -nv http://10.1.0.0/Share/qt-opensource-linux-x64-5.9.2.run && \
+    wget -nv https://download.qt.io/archive/qt/5.9/5.9.2/qt-opensource-linux-x64-5.9.2.run && \
     chmod +x qt-opensource-linux-x64-5.9.2.run && \
     QT_CI_PACKAGES=qt.592.android_x86,qt.592.android_armv7 "\$PWD"/extract-qt-installer.sh "\$PWD"/qt-opensource-linux-x64-5.9.2.run "\$QT_PATH" && \
     rm qt-opensource-linux-x64-5.9.2.run && \
