@@ -63,7 +63,7 @@ sudo chown -R "$(id -u):$(id -g)" "$dir"
 xz -d < $dir/rootfs.tar.xz | gzip -c > $dir/rootfs.tar.gz
 sed -i /^ENV/d "${dir}/Dockerfile"
 cat >> "${dir}/Dockerfile" <<EOF
-ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO} ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} ANDROID_SDK_PATH=/opt/android-sdk
+ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO} ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} ANDROID_SDK_PATH=/opt/android-sdk QT_PATH=/opt/Qt
 
 RUN wget -nv https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip && \
     unzip -q android-ndk-${NDK_VERSION}-linux-x86_64.zip -d /opt && \
@@ -81,6 +81,14 @@ RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zi
     cd /opt/android-sdk/tools/bin && \
     yes | ./sdkmanager --licenses && \
     ./sdkmanager "tools" "platform-tools" "platforms;android-23" "build-tools;23.0.3"
+
+RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \
+    chmod +x extract-qt-installer.sh && \
+    wget -nv http://10.1.0.0/Share/qt-opensource-linux-x64-5.9.2.run && \
+    chmod +x qt-opensource-linux-x64-5.9.2.run && \
+    QT_CI_PACKAGES=qt.592.android_x86,qt.592.android_armv7 "\$PWD"/extract-qt-installer.sh "\$PWD"/qt-opensource-linux-x64-5.9.2.run "\$QT_PATH" && \
+    rm qt-opensource-linux-x64-5.9.2.run && \
+    rm extract-qt-installer.sh
 EOF
 
 if [ "$DOCKER_REPO" ]; then
