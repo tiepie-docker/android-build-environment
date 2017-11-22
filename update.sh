@@ -63,7 +63,10 @@ sudo chown -R "$(id -u):$(id -g)" "$dir"
 xz -d < $dir/rootfs.tar.xz | gzip -c > $dir/rootfs.tar.gz
 sed -i /^ENV/d "${dir}/Dockerfile"
 cat >> "${dir}/Dockerfile" <<EOF
-ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO} ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} ANDROID_SDK_PATH=/opt/android-sdk QT_PATH=/opt/Qt
+ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO}
+ENV ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} ANDROID_SDK_PATH=/opt/android-sdk
+ENV ANDROID_NDK_ROOT=\${ANDROID_NDK_PATH} ANDROID_SDK_ROOT=\${ANDROID_SDK_PATH}
+ENV QT_PATH=/opt/Qt
 
 RUN wget -nv https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip && \
     unzip -q android-ndk-${NDK_VERSION}-linux-x86_64.zip -d /opt && \
