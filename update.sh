@@ -60,6 +60,10 @@ sudo DEBOOTSTRAP="qemu-debootstrap" nice ionice -c 3 "$mkimage" "${args[@]}" 2>&
 cat "$dir/build.log"
 sudo chown -R "$(id -u):$(id -g)" "$dir"
 
+QT_VERSION_MAJOR=5
+QT_VERSION_MINOR=9
+QT_VERSION_RELEASE=3
+
 xz -d < $dir/rootfs.tar.xz | gzip -c > $dir/rootfs.tar.gz
 sed -i /^ENV/d "${dir}/Dockerfile"
 cat >> "${dir}/Dockerfile" <<EOF
@@ -67,6 +71,7 @@ ENV ARCH=${UNAME_ARCH} UBUNTU_SUITE=${SUITE} DOCKER_REPO=${DOCKER_REPO}
 ENV ANDROID_NDK_PATH=/opt/android-ndk-${NDK_VERSION} ANDROID_SDK_PATH=/opt/android-sdk
 ENV ANDROID_NDK_ROOT=\${ANDROID_NDK_PATH} ANDROID_SDK_ROOT=\${ANDROID_SDK_PATH}
 ENV QT_PATH=/opt/Qt
+ENV QT_VERSION=${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}
 
 RUN wget -nv https://dl.google.com/android/repository/android-ndk-${NDK_VERSION}-linux-x86_64.zip && \
     unzip -q android-ndk-${NDK_VERSION}-linux-x86_64.zip -d /opt && \
@@ -87,11 +92,13 @@ RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zi
 
 RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \
     chmod +x extract-qt-installer.sh && \
-    wget -nv https://download.qt.io/archive/qt/5.9/5.9.2/qt-opensource-linux-x64-5.9.2.run && \
-    chmod +x qt-opensource-linux-x64-5.9.2.run && \
-    QT_CI_PACKAGES=qt.592.android_x86,qt.592.android_armv7 "\$PWD"/extract-qt-installer.sh "\$PWD"/qt-opensource-linux-x64-5.9.2.run "\$QT_PATH" && \
-    rm qt-opensource-linux-x64-5.9.2.run && \
-    rm extract-qt-installer.sh
+    wget -nv https://download.qt.io/archive/qt/${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}/${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}/qt-opensource-linux-x64-${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}.run && \
+    chmod +x qt-opensource-linux-x64-${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}.run && \
+    QT_CI_PACKAGES=qt.${QT_VERSION_MAJOR}${QT_VERSION_MINOR}${QT_VERSION_RELEASE}.android_x86,qt.${QT_VERSION_MAJOR}${QT_VERSION_MINOR}${QT_VERSION_RELEASE}.android_armv7 "\$PWD"/extract-qt-installer.sh "\$PWD"/qt-opensource-linux-x64-${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}.run "\$QT_PATH" && \
+    rm qt-opensource-linux-x64-${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}.run && \
+    rm extract-qt-installer.sh && \
+    \${QT_PATH}/${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}/android_armv7/src/3rdparty/gradle/gradlew -v && \
+    \${QT_PATH}/${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b \${QT_PATH}/${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}.${QT_VERSION_RELEASE}/android_armv7/src/android/templates/build.gradle | exit 0
 EOF
 
 if [ "$DOCKER_REPO" ]; then
