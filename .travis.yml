@@ -7,7 +7,7 @@ env:
         - DOCKER_REPO=tiepie/android-build-environment
         - NDK_VERSION=r15c
     matrix:
-        - ARCH=amd64 INCLUDE=iproute2,wget,curl,unzip,ca-certificates,libsm6,libice6,libxext6,libxrender1,libfontconfig1,libdbus-1-3,libx11-xcb1,libc6-dev-i386,lib32stdc++6,lib32z1 QEMU_ARCH=x86_64 SUITE=xenial UNAME_ARCH=x86_64 VERSION=16.04
+        - ARCH=amd64 INCLUDE=iproute2,wget,curl,unzip,ca-certificates,libsm6,libice6,libxext6,libxrender1,libfontconfig1,libdbus-1-3,libx11-xcb1,libc6-dev-i386,lib32stdc++6,lib32z1,cmake QEMU_ARCH=x86_64 SUITE=xenial UNAME_ARCH=x86_64 VERSION=16.04
 
 before_script:
     - echo "deb http://archive.ubuntu.com/ubuntu zesty-updates main universe" | sudo tee -a /etc/apt/sources.list
