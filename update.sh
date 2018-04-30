@@ -62,7 +62,7 @@ sudo chown -R "$(id -u):$(id -g)" "$dir"
 
 QT_VERSION_MAJOR=5
 QT_VERSION_MINOR=9
-QT_VERSION_RELEASE=3
+QT_VERSION_RELEASE=5
 
 xz -d < $dir/rootfs.tar.xz | gzip -c > $dir/rootfs.tar.gz
 sed -i /^ENV/d "${dir}/Dockerfile"
