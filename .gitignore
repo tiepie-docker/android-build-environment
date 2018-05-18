@@ -1,9 +1,5 @@
-*/full
-rootfs.tar.*
 Dockerfile
-build.log
-build-command.txt
-rootfs/
 *~
 .#*
 *#
+build

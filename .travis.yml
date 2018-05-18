@@ -3,17 +3,16 @@ services: docker
 language: bash
 env:
     global:
-        - QEMU_VER=v2.9.1
         - DOCKER_REPO=tiepie/android-build-environment
         - NDK_VERSION=r15c
+        - QT_MAJOR_VERSION=5
+        - QT_MINOR_VERSION=9
+        - QT_RELEASE_VERSION=5
     matrix:
-        - ARCH=amd64 INCLUDE=iproute2,wget,curl,unzip,ca-certificates,libsm6,libice6,libxext6,libxrender1,libfontconfig1,libdbus-1-3,libx11-xcb1,libc6-dev-i386,lib32stdc++6,lib32z1,cmake QEMU_ARCH=x86_64 SUITE=xenial UNAME_ARCH=x86_64 VERSION=16.04
+        - SUITE=xenial
+        - SUITE=bionic
 
-before_script:
-    - echo "deb http://archive.ubuntu.com/ubuntu artful-updates main universe" | sudo tee -a /etc/apt/sources.list
-    - sudo apt-get update -qq
-    - sudo apt-get -yt artful-updates install qemu-user-static debootstrap
 script:
-    - sudo ./update.sh -a "$ARCH" -v "$VERSION" -q "$QEMU_ARCH" -u "$QEMU_VER" -d "$DOCKER_REPO" -s "$SUITE" -i "$INCLUDE" -o "$UNAME_ARCH" -n "$NDK_VERSION"
+    - python build.py --suite="$SUITE" --docker-repo="$DOCKER_REPO" --ndk-version="$NDK_VERSION" --qt-major-version=$QT_MAJOR_VERSION --qt-minor-version=$QT_MINOR_VERSION --qt-release-version=$QT_RELEASE_VERSION
 after_success:
-    - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push $DOCKER_REPO:$ARCH-$SUITE; fi
+    - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker push $DOCKER_REPO:amd64-$SUITE; fi

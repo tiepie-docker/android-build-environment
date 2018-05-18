@@ -1,0 +1,36 @@
+{
+    "all": [
+        "make",
+        "python",
+        "python-colorama",
+        "python-pep8",
+        "python-numpy",
+        "flex",
+        "bison",
+        "openssh-client",
+        "rsync",
+        "php-cli",
+        "git",
+        "python3",
+        "lsb-release",
+        "wget",
+        "iproute2", 
+        "curl", 
+        "unzip", 
+        "ca-certificates", 
+        "libsm6", "libice6", 
+        "libxext6", 
+        "libxrender1", 
+        "libfontconfig1", 
+        "libdbus-1-3", 
+        "libx11-xcb1", 
+        "libc6-dev-i386", 
+        "lib32stdc++6", 
+        "lib32z1", 
+        "cmake",
+        "openjdk-8-jdk"
+    ],
+    "bionic": [
+      "git-lfs"
+    ]
+}
