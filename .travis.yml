@@ -7,7 +7,7 @@ env:
         - NDK_VERSION=r15c
         - QT_MAJOR_VERSION=5
         - QT_MINOR_VERSION=9
-        - QT_RELEASE_VERSION=5
+        - QT_RELEASE_VERSION=6
     matrix:
         - SUITE=xenial
         - SUITE=bionic
