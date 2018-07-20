@@ -124,6 +124,12 @@ try:
     docker_file.write("    ${QT_PATH}/" + str(args.qt_major_version) + "." + str(args.qt_minor_version) + "." + str(args.qt_release_version) + "/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/" + str(args.qt_major_version) + "." + str(args.qt_minor_version) + "." + str(args.qt_release_version) + "/android_armv7/src/android/templates/build.gradle | exit 0\n")
     docker_file.write("\n")
 
+    docker_file.write("RUN apt-get update && \\\n")
+    docker_file.write("    apt-get dist-upgrade -y && \\\n")
+    docker_file.write("    apt-get install -y g++ ruby-dev && \\\n")
+    docker_file.write("    rm -rf /var/lib/apt/lists/* && \\\n")
+    docker_file.write("    gem install fastlane -NV\n")
+
     docker_file.write("CMD [\"/bin/bash\"]\n")
     docker_file.write("\n")
 
