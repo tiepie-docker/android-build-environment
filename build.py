@@ -113,6 +113,13 @@ try:
     docker_file.write("    ./sdkmanager \"tools\" \"platform-tools\" \"platforms;android-23\" \"build-tools;23.0.3\"\n")
     docker_file.write("\n")
 
+    # Depenencies for Qt installer:
+    docker_file.write("RUN apt-get update && \\\n")
+    docker_file.write("    apt-get dist-upgrade -y && \\\n")
+    docker_file.write("    apt-get install -y libgl1-mesa-glx libglib2.0-0 && \\\n")
+    docker_file.write("    apt-get clean && \\\n")
+    docker_file.write("    rm -rf /var/lib/apt/lists/*\n")
+
     docker_file.write("RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \\\n")
     docker_file.write("    chmod +x extract-qt-installer.sh && \\\n")
     docker_file.write("    wget -nv https://download.qt.io/archive/qt/" + str(args.qt_major_version) + "." + str(args.qt_minor_version) + "/" + str(args.qt_major_version) + "." + str(args.qt_minor_version) + "." + str(args.qt_release_version) + "/qt-opensource-linux-x64-" + str(args.qt_major_version) + "." + str(args.qt_minor_version) + "." + str(args.qt_release_version) + ".run && \\\n")
