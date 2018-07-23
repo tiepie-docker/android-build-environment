@@ -77,6 +77,7 @@ try:
     docker_file.write("    apt-get install -y apt-utils && \\\n")
     docker_file.write("    apt-get clean && \\\n")
     docker_file.write("    rm -rf /var/lib/apt/lists/*\n")
+    docker_file.write("\n")
 
     if packages:
         docker_file.write("RUN apt-get update && \\\n")
@@ -116,9 +117,26 @@ try:
     # Depenencies for Qt installer:
     docker_file.write("RUN apt-get update && \\\n")
     docker_file.write("    apt-get dist-upgrade -y && \\\n")
-    docker_file.write("    apt-get install -y libgl1-mesa-glx libglib2.0-0 && \\\n")
+    docker_file.write("    apt-get install -y libfontconfig1 \\\n")
+    docker_file.write("                       libdbus-1-3 \\\n")
+    docker_file.write("                       libx11-xcb1 \\\n")
+    docker_file.write("                       libnss3-dev \\\n")
+    docker_file.write("                       libasound2-dev \\\n")
+    docker_file.write("                       libxcomposite1 \\\n")
+    docker_file.write("                       libxrender1 \\\n")
+    docker_file.write("                       libxrandr2 \\\n")
+    docker_file.write("                       libxcursor-dev \\\n")
+    docker_file.write("                       libegl1-mesa-dev \\\n")
+    docker_file.write("                       libxi-dev \\\n")
+    docker_file.write("                       libxss-dev \\\n")
+    docker_file.write("                       libxtst6 \\\n")
+    docker_file.write("                       libgl1-mesa-dev \\\n")
+    docker_file.write("                       libgl1-mesa-glx \\\n")
+    docker_file.write("                       libglib2.0-0 \\\n")
+    docker_file.write("                       libdbus-1-3 && \\\n")
     docker_file.write("    apt-get clean && \\\n")
     docker_file.write("    rm -rf /var/lib/apt/lists/*\n")
+    docker_file.write("\n")
 
     docker_file.write("RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \\\n")
     docker_file.write("    chmod +x extract-qt-installer.sh && \\\n")
@@ -136,6 +154,7 @@ try:
     docker_file.write("    apt-get install -y g++ ruby-dev && \\\n")
     docker_file.write("    rm -rf /var/lib/apt/lists/* && \\\n")
     docker_file.write("    gem install fastlane -NV\n")
+    docker_file.write("\n")
 
     docker_file.write("CMD [\"/bin/bash\"]\n")
     docker_file.write("\n")
