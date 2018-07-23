@@ -117,7 +117,8 @@ try:
     # Depenencies for Qt installer:
     docker_file.write("RUN apt-get update && \\\n")
     docker_file.write("    apt-get dist-upgrade -y && \\\n")
-    docker_file.write("    apt-get install -y libfontconfig1 \\\n")
+    docker_file.write("    apt-get install -y g++ \\\n")
+    docker_file.write("                       libfontconfig1 \\\n")
     docker_file.write("                       libdbus-1-3 \\\n")
     docker_file.write("                       libx11-xcb1 \\\n")
     docker_file.write("                       libnss3-dev \\\n")
