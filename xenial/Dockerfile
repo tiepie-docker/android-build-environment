@@ -1,5 +1,8 @@
 FROM ubuntu:xenial
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
+
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
     apt-get install -y apt-utils && \

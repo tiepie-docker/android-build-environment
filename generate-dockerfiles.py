@@ -28,6 +28,10 @@ try:
         docker_file.write("FROM ubuntu:" + suite + "\n")
         docker_file.write("\n")
 
+        docker_file.write("ENV DEBIAN_FRONTEND=noninteractive\n")
+        docker_file.write("ENV DEBCONF_NONINTERACTIVE_SEEN=true\n")
+        docker_file.write("\n")
+
         docker_file.write("RUN apt-get update && \\\n")
         docker_file.write("    apt-get dist-upgrade -y && \\\n")
         docker_file.write("    apt-get install -y apt-utils && \\\n")
