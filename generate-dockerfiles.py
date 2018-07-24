@@ -25,7 +25,7 @@ try:
             packages = list(set(packages))
 
         docker_file = open(suite + "/Dockerfile", "w")
-        docker_file.write("FROM " + suite + "\n")
+        docker_file.write("FROM ubuntu:" + suite + "\n")
         docker_file.write("\n")
 
         docker_file.write("RUN apt-get update && \\\n")
