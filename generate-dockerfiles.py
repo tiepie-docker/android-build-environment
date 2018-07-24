@@ -32,6 +32,11 @@ try:
         docker_file.write("ENV DEBCONF_NONINTERACTIVE_SEEN=true\n")
         docker_file.write("\n")
 
+        # Needed for fastlane:
+        docker_file.write("ENV LANG C.UTF-8\n")
+        docker_file.write("ENV LC_ALL C.UTF-8\n")
+        docker_file.write("\n")
+
         docker_file.write("RUN apt-get update && \\\n")
         docker_file.write("    apt-get dist-upgrade -y && \\\n")
         docker_file.write("    apt-get install -y apt-utils && \\\n")
