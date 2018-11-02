@@ -47,7 +47,7 @@ ENV ANDROID_NDK_ROOT=/opt/android-ndk-r15c
 ENV ANDROID_SDK_PATH=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV QT_PATH=/opt/Qt
-ENV QT_VERSION=5.9.6
+ENV QT_VERSION=5.9.7
 
 RUN wget -nv https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip && \
     unzip -q android-ndk-r15c-linux-x86_64.zip -d /opt && \
@@ -86,13 +86,13 @@ RUN apt-get update && \
 
 RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-installer > extract-qt-installer.sh && \
     chmod +x extract-qt-installer.sh && \
-    wget -nv https://download.qt.io/archive/qt/5.9/5.9.6/qt-opensource-linux-x64-5.9.6.run && \
-    chmod +x qt-opensource-linux-x64-5.9.6.run && \
-    QT_CI_PACKAGES=qt.596.android_x86,qt.596.android_armv7 "$PWD"/extract-qt-installer.sh "$PWD"/qt-opensource-linux-x64-5.9.6.run "$QT_PATH" && \
-    rm qt-opensource-linux-x64-5.9.6.run && \
+    wget -nv https://download.qt.io/archive/qt/5.9/5.9.7/qt-opensource-linux-x64-5.9.7.run && \
+    chmod +x qt-opensource-linux-x64-5.9.7.run && \
+    QT_CI_PACKAGES=qt.597.android_x86,qt.597.android_armv7 "$PWD"/extract-qt-installer.sh "$PWD"/qt-opensource-linux-x64-5.9.7.run "$QT_PATH" && \
+    rm qt-opensource-linux-x64-5.9.7.run && \
     rm extract-qt-installer.sh && \
-    ${QT_PATH}/5.9.6/android_armv7/src/3rdparty/gradle/gradlew -v && \
-    ${QT_PATH}/5.9.6/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/5.9.6/android_armv7/src/android/templates/build.gradle | exit 0
+    ${QT_PATH}/5.9.7/android_armv7/src/3rdparty/gradle/gradlew -v && \
+    ${QT_PATH}/5.9.7/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/5.9.7/android_armv7/src/android/templates/build.gradle | exit 0
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
