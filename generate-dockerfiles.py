@@ -7,7 +7,7 @@ ANDROID_NDK_VERSION = "r15c"
 
 QT_MAJOR_VERISON = 5
 QT_MINOR_VERISON = 9
-QT_RELEASE_VERISON = 6
+QT_RELEASE_VERISON = 7
 
 try:
     for suite in ["xenial", "bionic"]:
