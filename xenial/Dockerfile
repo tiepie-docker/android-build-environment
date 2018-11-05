@@ -91,7 +91,7 @@ RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-ins
     chmod +x extract-qt-installer.sh && \
     wget -nv https://download.qt.io/archive/qt/5.9/5.9.7/qt-opensource-linux-x64-5.9.7.run && \
     chmod +x qt-opensource-linux-x64-5.9.7.run && \
-    QT_CI_PACKAGES=qt.597.android_x86,qt.597.android_armv7 "$PWD"/extract-qt-installer.sh "$PWD"/qt-opensource-linux-x64-5.9.7.run "$QT_PATH" && \
+    QT_CI_PACKAGES=qt.qt5.597.android_x86,qt.qt5.597.android_armv7 "$PWD"/extract-qt-installer.sh "$PWD"/qt-opensource-linux-x64-5.9.7.run "$QT_PATH" && \
     rm qt-opensource-linux-x64-5.9.7.run && \
     rm extract-qt-installer.sh && \
     ${QT_PATH}/5.9.7/android_armv7/src/3rdparty/gradle/gradlew -v && \
