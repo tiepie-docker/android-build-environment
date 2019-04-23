@@ -7,7 +7,6 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 RUN apt-get update && \
-    apt-get dist-upgrade -y && \
     apt-get install -y apt-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -62,7 +61,6 @@ RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zi
     ./sdkmanager "tools" "platform-tools" "platforms;android-23" "build-tools;23.0.3"
 
 RUN apt-get update && \
-    apt-get dist-upgrade -y && \
     apt-get install -y g++ \
                        libfontconfig1 \
                        libdbus-1-3 \
@@ -95,7 +93,6 @@ RUN curl https://raw.githubusercontent.com/benlau/qtci/master/bin/extract-qt-ins
     ${QT_PATH}/5.12.3/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/5.12.3/android_armv7/src/android/templates/build.gradle | exit 0
 
 RUN apt-get update && \
-    apt-get dist-upgrade -y && \
     apt-get install -y g++ ruby-dev && \
     rm -rf /var/lib/apt/lists/* && \
     gem install fastlane -NV

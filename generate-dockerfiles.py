@@ -38,7 +38,6 @@ try:
         docker_file.write("\n")
 
         docker_file.write("RUN apt-get update && \\\n")
-        docker_file.write("    apt-get dist-upgrade -y && \\\n")
         docker_file.write("    apt-get install -y apt-utils && \\\n")
         docker_file.write("    apt-get clean && \\\n")
         docker_file.write("    rm -rf /var/lib/apt/lists/*\n")
@@ -81,7 +80,6 @@ try:
 
         # Depenencies for Qt installer:
         docker_file.write("RUN apt-get update && \\\n")
-        docker_file.write("    apt-get dist-upgrade -y && \\\n")
         docker_file.write("    apt-get install -y g++ \\\n")
         docker_file.write("                       libfontconfig1 \\\n")
         docker_file.write("                       libdbus-1-3 \\\n")
@@ -116,7 +114,6 @@ try:
         docker_file.write("\n")
 
         docker_file.write("RUN apt-get update && \\\n")
-        docker_file.write("    apt-get dist-upgrade -y && \\\n")
         docker_file.write("    apt-get install -y g++ ruby-dev && \\\n")
         docker_file.write("    rm -rf /var/lib/apt/lists/* && \\\n")
         docker_file.write("    gem install fastlane -NV\n")
