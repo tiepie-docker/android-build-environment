@@ -3,7 +3,7 @@ import os
 import sys
 import json
 
-ANDROID_NDK_VERSION = "r15c"
+ANDROID_NDK_VERSION = "r19c"
 
 QT_MAJOR_VERISON = 5
 QT_MINOR_VERISON = 9

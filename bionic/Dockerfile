@@ -42,16 +42,16 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV ANDROID_NDK_PATH=/opt/android-ndk-r15c
-ENV ANDROID_NDK_ROOT=/opt/android-ndk-r15c
+ENV ANDROID_NDK_PATH=/opt/android-ndk-r19c
+ENV ANDROID_NDK_ROOT=/opt/android-ndk-r19c
 ENV ANDROID_SDK_PATH=/opt/android-sdk
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV QT_PATH=/opt/Qt
 ENV QT_VERSION=5.9.7
 
-RUN wget -nv https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip && \
-    unzip -q android-ndk-r15c-linux-x86_64.zip -d /opt && \
-    rm /android-ndk-r15c-linux-x86_64.zip 
+RUN wget -nv https://dl.google.com/android/repository/android-ndk-r19c-linux-x86_64.zip && \
+    unzip -q android-ndk-r19c-linux-x86_64.zip -d /opt && \
+    rm /android-ndk-r19c-linux-x86_64.zip 
 
 RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
     mkdir -p /opt/android-sdk && \
