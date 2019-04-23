@@ -70,10 +70,10 @@ try:
         docker_file.write("    rm /android-ndk-" + ANDROID_NDK_VERSION + "-linux-x86_64.zip \n")
         docker_file.write("\n")
 
-        docker_file.write("RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \\\n")
+        docker_file.write("RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \\\n")
         docker_file.write("    mkdir -p /opt/android-sdk && \\\n")
-        docker_file.write("    unzip -q sdk-tools-linux-3859397.zip -d /opt/android-sdk && \\\n")
-        docker_file.write("    rm sdk-tools-linux-3859397.zip && \\\n")
+        docker_file.write("    unzip -q sdk-tools-linux-4333796.zip -d /opt/android-sdk && \\\n")
+        docker_file.write("    rm sdk-tools-linux-4333796.zip && \\\n")
         docker_file.write("    cd /opt/android-sdk/tools/bin && \\\n")
         docker_file.write("    yes | ./sdkmanager --licenses && \\\n")
         docker_file.write("    ./sdkmanager \"tools\" \"platform-tools\" \"platforms;android-23\" \"build-tools;23.0.3\"\n")

@@ -53,10 +53,10 @@ RUN wget -nv https://dl.google.com/android/repository/android-ndk-r19c-linux-x86
     unzip -q android-ndk-r19c-linux-x86_64.zip -d /opt && \
     rm /android-ndk-r19c-linux-x86_64.zip 
 
-RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
+RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \
     mkdir -p /opt/android-sdk && \
-    unzip -q sdk-tools-linux-3859397.zip -d /opt/android-sdk && \
-    rm sdk-tools-linux-3859397.zip && \
+    unzip -q sdk-tools-linux-4333796.zip -d /opt/android-sdk && \
+    rm sdk-tools-linux-4333796.zip && \
     cd /opt/android-sdk/tools/bin && \
     yes | ./sdkmanager --licenses && \
     ./sdkmanager "tools" "platform-tools" "platforms;android-23" "build-tools;23.0.3"
