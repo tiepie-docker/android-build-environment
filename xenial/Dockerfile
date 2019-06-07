@@ -61,7 +61,7 @@ RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zi
     rm sdk-tools-linux-4333796.zip && \
     cd /opt/android-sdk/tools/bin && \
     yes | ./sdkmanager --licenses && \
-    ./sdkmanager "tools" "platform-tools" "platforms;android-23" "build-tools;23.0.3"
+    ./sdkmanager "tools" "platform-tools" "platforms;android-25" "build-tools;25.0.3"
 
 RUN apt-get update && \
     apt-get install -y g++ \

@@ -75,7 +75,7 @@ try:
         docker_file.write("    rm sdk-tools-linux-4333796.zip && \\\n")
         docker_file.write("    cd /opt/android-sdk/tools/bin && \\\n")
         docker_file.write("    yes | ./sdkmanager --licenses && \\\n")
-        docker_file.write("    ./sdkmanager \"tools\" \"platform-tools\" \"platforms;android-23\" \"build-tools;23.0.3\"\n")
+        docker_file.write("    ./sdkmanager \"tools\" \"platform-tools\" \"platforms;android-25\" \"build-tools;25.0.3\"\n")
         docker_file.write("\n")
 
         # Depenencies for Qt installer:
