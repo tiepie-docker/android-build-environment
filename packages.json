@@ -23,7 +23,7 @@
         "lib32stdc++6", 
         "lib32z1", 
         "cmake",
-        "openjdk-8-jdk"
+        "openjdk-8-jdk",
         "ccache"
     ],
     "bionic": [
