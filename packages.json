@@ -24,6 +24,7 @@
         "lib32z1", 
         "cmake",
         "openjdk-8-jdk"
+        "ccache"
     ],
     "bionic": [
       "git-lfs"
