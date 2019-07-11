@@ -21,6 +21,7 @@ RUN apt-get update && \
                        openssh-client \
                        make \
                        python-colorama \
+                       ccache \
                        flex \
                        unzip \
                        openjdk-8-jdk \
