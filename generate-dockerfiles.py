@@ -6,8 +6,8 @@ import json
 ANDROID_NDK_VERSION = "r19c"
 
 QT_MAJOR_VERISON = 5
-QT_MINOR_VERISON = 12
-QT_RELEASE_VERISON = 4
+QT_MINOR_VERISON = 13
+QT_RELEASE_VERISON = 0
 
 try:
     for suite in ["xenial", "bionic"]:
