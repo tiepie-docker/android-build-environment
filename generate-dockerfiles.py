@@ -10,7 +10,7 @@ QT_MINOR_VERISON = 13
 QT_RELEASE_VERISON = 0
 
 try:
-    for suite in ["xenial", "bionic"]:
+    for suite in ["bionic"]:
         if not os.path.exists(suite):
             os.mkdir(suite)
 
