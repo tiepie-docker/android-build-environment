@@ -6,8 +6,8 @@ import json
 ANDROID_NDK_VERSION = "r20b"
 
 QT_MAJOR_VERISON = 5
-QT_MINOR_VERISON = 13
-QT_RELEASE_VERISON = 2
+QT_MINOR_VERISON = 14
+QT_RELEASE_VERISON = 0
 
 try:
     for suite in ["bionic"]:
@@ -106,11 +106,11 @@ try:
         docker_file.write("    chmod +x extract-qt-installer.sh && \\\n")
         docker_file.write("    wget -nv https://download.qt.io/archive/qt/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/qt-opensource-linux-x64-" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + ".run && \\\n")
         docker_file.write("    chmod +x qt-opensource-linux-x64-" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + ".run && \\\n")
-        docker_file.write("    QT_CI_PACKAGES=qt.qt5." + str(QT_MAJOR_VERISON) + str(QT_MINOR_VERISON) + str(QT_RELEASE_VERISON) + ".android_x86,qt.qt5." + str(QT_MAJOR_VERISON) + str(QT_MINOR_VERISON) + str(QT_RELEASE_VERISON) + ".android_x86_64,qt.qt5." + str(QT_MAJOR_VERISON) + str(QT_MINOR_VERISON) + str(QT_RELEASE_VERISON) + ".android_arm64_v8a,qt.qt5." + str(QT_MAJOR_VERISON) + str(QT_MINOR_VERISON) + str(QT_RELEASE_VERISON) + ".android_armv7 \"$PWD\"/extract-qt-installer.sh \"$PWD\"/qt-opensource-linux-x64-" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + ".run \"$QT_PATH\" && \\\n")
+        docker_file.write("    QT_CI_PACKAGES=qt.qt5." + str(QT_MAJOR_VERISON) + str(QT_MINOR_VERISON) + str(QT_RELEASE_VERISON) + ".android \"$PWD\"/extract-qt-installer.sh \"$PWD\"/qt-opensource-linux-x64-" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + ".run \"$QT_PATH\" && \\\n")
         docker_file.write("    rm qt-opensource-linux-x64-" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + ".run && \\\n")
         docker_file.write("    rm extract-qt-installer.sh && \\\n")
-        docker_file.write("    ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android_armv7/src/3rdparty/gradle/gradlew -v && \\\n")
-        docker_file.write("    ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android_armv7/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android_armv7/src/android/templates/build.gradle | exit 0\n")
+        docker_file.write("    ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android/src/3rdparty/gradle/gradlew -v && \\\n")
+        docker_file.write("    ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android/src/3rdparty/gradle/gradlew --dry-run --refresh-dependencies -b ${QT_PATH}/" + str(QT_MAJOR_VERISON) + "." + str(QT_MINOR_VERISON) + "." + str(QT_RELEASE_VERISON) + "/android/src/android/templates/build.gradle | exit 0\n")
         docker_file.write("\n")
 
         docker_file.write("RUN apt-get update && \\\n")
