@@ -3,7 +3,7 @@ import os
 import sys
 import json
 
-ANDROID_NDK_VERSION = "r19c"
+ANDROID_NDK_VERSION = "r20b"
 
 QT_MAJOR_VERISON = 5
 QT_MINOR_VERISON = 13
@@ -66,7 +66,7 @@ try:
 
         docker_file.write("RUN wget -nv https://dl.google.com/android/repository/android-ndk-" + ANDROID_NDK_VERSION + "-linux-x86_64.zip && \\\n")
         docker_file.write("    unzip -q android-ndk-" + ANDROID_NDK_VERSION + "-linux-x86_64.zip -d /opt && \\\n")
-        docker_file.write("    rm /android-ndk-" + ANDROID_NDK_VERSION + "-linux-x86_64.zip \n")
+        docker_file.write("    rm /android-ndk-" + ANDROID_NDK_VERSION + "-linux-x86_64.zip\n")
         docker_file.write("\n")
 
         docker_file.write("RUN wget -nv https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \\\n")
